@@ -1,4 +1,4 @@
-package br.com.alura.jpa.modelo;
+package br.com.alura.jpa.testes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -8,6 +8,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import br.com.alura.jpa.modelo.Conta;
+import br.com.alura.jpa.modelo.Movimentacao;
+import br.com.alura.jpa.modelo.TipoMovimentacao;
 
 public class TestaRelacionamentos {
 	public static void main(String[] args) {
