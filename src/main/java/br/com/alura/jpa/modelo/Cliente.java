@@ -21,11 +21,6 @@ public class Cliente {
 		
 	}
 	
-	public Cliente(String nome, String profissao, String endereco) {
-		this.nome = nome;
-		this.profissao = profissao;
-		this.endereco = endereco;
-	}
 	public Cliente(String nome, String profissao, String endereco, Conta conta) {
 		this.nome = nome;
 		this.profissao = profissao;
