@@ -65,4 +65,11 @@ public class Conta {
 	public void setBanco(String banco) {
 		this.banco = banco;
 	}
+
+	@Override
+	public String toString() {
+		return "Conta [id=" + id + ", banco=" + banco + ", agencia=" + agencia + ", numero=" + numero + ", titular="
+				+ titular + ", saldo=" + saldo + "]";
+	}
+	
 }

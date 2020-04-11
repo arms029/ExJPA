@@ -18,7 +18,9 @@ public class Categoria {
 	public Categoria(String nome) {
 		this.nome = nome;
 	}
-	
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -64,10 +66,11 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nome=" + nome + ", getId()=" + getId() + ", getNome()=" + getNome()
-				+ ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()=" + super.toString()
-				+ "]";
+		return "Categoria [id=" + id + ", nome=" + nome + "]";
 	}
+
+
+
 	
 	
 }

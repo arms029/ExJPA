@@ -2,51 +2,45 @@ package br.com.alura.jpa.testes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import br.com.alura.jpa.modelo.Categoria;
 import br.com.alura.jpa.modelo.Cliente;
 import br.com.alura.jpa.modelo.Conta;
 import br.com.alura.jpa.modelo.Movimentacao;
 import br.com.alura.jpa.modelo.TipoMovimentacao;
+import br.com.alura.jpa.util.JPAUtil;
 
 public class TestaRelacionamentos {
-	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contas"); //Cria fábrica de gerenciamento de persistência
-		EntityManager em = emf.createEntityManager(); // Cria um objeto do tipo gerenciamento de persistência
+	public static void main(String... args) {
+		Categoria categoria1 = new Categoria("Viagem");
+		Categoria categoria2 = new Categoria("Negócios");
+		Categoria categoria3 = new Categoria("Assalto");
 		
-		Conta contaDaMarcella = new Conta("NuBank",1234,5678,"Marcella",new BigDecimal("1200.69"));
-		Cliente marcella = new Cliente("Marcella", "Designer", "Rua malta 632", contaDaMarcella);
+		Conta conta = new Conta("NuBank",1234,5678,"Ana",new BigDecimal("20000"));
+		Cliente cliente = new Cliente("Ana", "dev", "Rua do melão, 564", conta);
 
-		Conta contaDaMirella = new Conta("Itau",2231,5564,"Mirella",new BigDecimal("18200.50"));
-		Cliente mirella = new Cliente("Mirella", "Back-end dev", "Rua lopes 132", contaDaMirella);
+		Movimentacao movimentacao1 = new Movimentacao(new BigDecimal("200"), 
+				TipoMovimentacao.SAIDA, LocalDateTime.now(),"Viagem à SP", Arrays.asList(categoria1, categoria2), conta);
 		
-		List<Categoria> categorias = new ArrayList<Categoria>();
-		categorias.add(new Categoria("Festa"));
-		categorias.add(new Categoria("jogos"));
-		categorias.add(new Categoria("napalm"));
+		Movimentacao movimentacao2 = new Movimentacao(new BigDecimal("300"), 
+				TipoMovimentacao.SAIDA, LocalDateTime.now(),"Viagem à RJ", Arrays.asList(categoria1, categoria2, categoria3), conta);
 		
-		List<Movimentacao> movimentacoes = new ArrayList<>();
-		movimentacoes.add(new Movimentacao(new BigDecimal("2900"), TipoMovimentacao.ENTRADA, LocalDateTime.now(),
-				"Fogo infinito", categorias));
-		
-		
+		EntityManager em = JPAUtil.createEntityManager();
 		em.getTransaction().begin(); //inicia a transação
 		
-		em.persist(contaDaMarcella);
-		em.persist(marcella);
-		em.persist(contaDaMirella);
-		em.persist(mirella);
-		categorias.forEach(categoria -> em.persist(categoria));
-		movimentacoes.forEach(movimentacao -> em.persist(movimentacao));
-		
+		em.persist(categoria1);
+		em.persist(categoria2);
+		em.persist(categoria3);
+		em.persist(conta);
+		em.persist(cliente);
+		em.persist(movimentacao1);
+		em.persist(movimentacao2);
+
 		em.getTransaction().commit(); //grava as alterações
 		em.close();	//fecha a transação
+		
 	}
-
 }

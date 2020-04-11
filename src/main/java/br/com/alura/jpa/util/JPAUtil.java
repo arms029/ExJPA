@@ -19,7 +19,7 @@ public class JPAUtil {
             emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         } catch (Throwable ex) {
         	//log.error("Não conseguiu carregar a EntityManagerFactory: "+ex.getMessage());
-        	System.out.println("Não conseguiu carregar a EntityManagerFactory: " +ex.getMessage());
+        	System.out.println("Não conseguiu carregar a EntityManagerFactory: " + ex.getMessage());
             throw new ExceptionInInitializerError(ex);
         }
     }

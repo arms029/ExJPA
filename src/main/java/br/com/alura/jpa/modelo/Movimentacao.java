@@ -28,7 +28,7 @@ public class Movimentacao {
 	private List<Categoria> categorias;
 	@ManyToOne
 	private Conta conta;
-	
+
 	public Movimentacao() {
 	}
 	
@@ -83,4 +83,12 @@ public class Movimentacao {
 	public Conta getConta() {
 		return conta;
 	}
+
+	@Override
+	public String toString() {
+		return "Movimentacao [id=" + id + ", valor=" + valor + ", tipoMovimentacao=" + tipoMovimentacao + ", data="
+				+ data + ", descricao=" + descricao + ", categorias=" + categorias + ", conta=" + conta + "]";
+	}
+	
+
 }
